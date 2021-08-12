@@ -29,9 +29,8 @@ class Git_Pull {
   }
 
   public function exec_command() {
-		$theme   = wp_get_theme();
-		$slug    = escapeshellcmd($theme->stylesheet);
-		$command = "git -C ../wp-content/themes/{$slug}/ pull origin main";
+		$directory = escapeshellcmd(get_stylesheet_directory());
+		$command   = "git -C {$directory} pull origin main";
 		exec($command, $output);
 		if ( empty( $output ) ) {
 			$this->admin_notices[] = array(
